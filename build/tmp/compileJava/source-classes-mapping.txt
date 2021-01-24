@@ -1,0 +1,4 @@
+az/charming/teachermanagement/TeachermanagementApplication.java
+ az.charming.teachermanagement.TeachermanagementApplication
+az/charming/teachermanagement/controller/IndexController.java
+ az.charming.teachermanagement.controller.IndexController
