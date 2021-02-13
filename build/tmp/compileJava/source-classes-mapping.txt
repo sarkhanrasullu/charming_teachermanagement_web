@@ -1,4 +1,8 @@
+az/charming/teachermanagement/controller/StudentController.java
+ az.charming.teachermanagement.controller.StudentController
+az/charming/teachermanagement/repository/StudentRepository.java
+ az.charming.teachermanagement.repository.StudentRepository
+az/charming/teachermanagement/entity/StudentEntity.java
+ az.charming.teachermanagement.entity.StudentEntity
 az/charming/teachermanagement/TeachermanagementApplication.java
  az.charming.teachermanagement.TeachermanagementApplication
-az/charming/teachermanagement/controller/IndexController.java
- az.charming.teachermanagement.controller.IndexController
