@@ -1,19 +1,37 @@
 package az.charming.teachermanagement.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.annotation.Generated;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
-@Entity(name="student")//hibernate, eclipselink
+@Entity
+@Table(name="student")
+@NamedQuery(query ="select s from StudentEntity s where s.school.id=:id and s.age=:age", name = "nqFindBySchoolIdAndAge")
 public class StudentEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String surname;
     private Integer age;
     private BigDecimal scholarship;
+
+    @ManyToMany(cascade = {
+                CascadeType.PERSIST,
+                CascadeType.MERGE,
+                CascadeType.REMOVE
+            })
+    @JoinTable(name = "student_teacher",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
+    private List<TeacherEntity> teacherList;
+
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    private SchoolEntity school;
 
     public Integer getId() {
         return id;
@@ -57,6 +75,24 @@ public class StudentEntity {
 
     public StudentEntity setScholarship(BigDecimal scholarship) {
         this.scholarship = scholarship;
+        return this;
+    }
+
+    public List<TeacherEntity> getTeacherList() {
+        return teacherList;
+    }
+
+    public StudentEntity setTeacherList(List<TeacherEntity> teacherList) {
+        this.teacherList = teacherList;
+        return this;
+    }
+
+    public SchoolEntity getSchool() {
+        return school;
+    }
+
+    public StudentEntity setSchool(SchoolEntity school) {
+        this.school = school;
         return this;
     }
 

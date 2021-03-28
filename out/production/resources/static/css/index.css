@@ -1,0 +1,25 @@
+#main-panel{
+            width: 80%;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+            .form-panel{
+                display: block;
+                border: 1px solid;
+                padding: 22px;
+                border-radius: 10px;
+                background-color: lightblue;
+                position: fixed;
+                left: 34%;
+                top: 17%;
+                width: 300px;
+            }
+
+            .form-panel input{
+                float:right;
+            }
+
+            .form-panel div{
+                height: 26px;
+            }
