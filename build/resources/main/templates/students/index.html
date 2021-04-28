@@ -64,6 +64,7 @@
                 "                    </form>\n" +
                 "                </td>\n" +
                 "            </tr>";
+            studentsPanelRest.innerHTML = '';
             for(var i=0;i<list.length;i++){
                 var teachers = "";
                 for(var j=0;j<list[i].teacherList.length;j++){
@@ -80,9 +81,13 @@
             }
 
         }
+
     </script>
 </head>
 <body>
+<a href="/logout">LOGOUT</a>
+
+Hello <th:text value="${loggedInStudent.username}">
 <button onclick="showAllStudents()">show all students</button>
 <div id="studentsPanelRest">
 

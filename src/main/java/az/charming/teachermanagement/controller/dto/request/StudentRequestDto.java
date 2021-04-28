@@ -10,6 +10,8 @@ import java.util.List;
 
 public class StudentRequestDto {
     private Integer id;
+    private String username;
+    private String password;
     private String name;
     private String surname;
     private Integer age;
@@ -105,6 +107,24 @@ public class StudentRequestDto {
 
     public StudentRequestDto setTeachers(List<TeacherRequestDto> teacherList) {
         this.teachers = teacherList;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public StudentRequestDto setUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public StudentRequestDto setPassword(String password) {
+        this.password = password;
         return this;
     }
 }

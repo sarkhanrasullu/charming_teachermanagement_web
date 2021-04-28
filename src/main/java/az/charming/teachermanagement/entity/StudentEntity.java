@@ -7,15 +7,17 @@ import java.util.List;
 
 @Entity
 @Table(name="student")
-@NamedQuery(query ="select s from StudentEntity s where s.school.id=:id and s.age=:age", name = "nqFindBySchoolIdAndAge")
 public class StudentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String username;
+    private String password;
     private String name;
     private String surname;
     private Integer age;
+    private String roles;
     private BigDecimal scholarship;
 
     @ManyToMany(cascade = {
@@ -93,6 +95,33 @@ public class StudentEntity {
 
     public StudentEntity setSchool(SchoolEntity school) {
         this.school = school;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public StudentEntity setUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public StudentEntity setPassword(String password) {
+        this.password = password;
+        return this;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public StudentEntity setRoles(String roles) {
+        this.roles = roles;
         return this;
     }
 

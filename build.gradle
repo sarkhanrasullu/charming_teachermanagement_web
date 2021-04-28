@@ -20,6 +20,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'mysql:mysql-connector-java'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation group: 'org.springframework.security', 		name: 'spring-security-crypto', version: '5.4.5'
+	implementation group: 'org.springframework.security', 		name: 'spring-security-jwt', 	version: '1.0.9.RELEASE'
+	implementation group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.3.4.RELEASE'
 }
 
 test {

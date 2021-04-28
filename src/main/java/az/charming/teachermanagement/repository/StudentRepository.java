@@ -10,10 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface StudentRepository extends JpaRepository<StudentEntity, Integer>, JpaSpecificationExecutor {
 
+    Optional<StudentEntity> findByUsername(String username);
     List<StudentEntity> findByNameOrSurnameOrAgeOrScholarship(String name, String surname, Integer age, BigDecimal scholarship);
 //    @Query(value = "select s from StudentEntity s where s.school.id=:id and s.age=:age")
 //    List<StudentEntity> findAllBySchoolIdAndAge(@Param("id") Integer id, @Param("age") Integer age);

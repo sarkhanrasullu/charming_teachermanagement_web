@@ -120,4 +120,13 @@ public class StudentService {
         }
         studentRepository.save(studentDto.toEntity());
     }
+
+    public StudentDto findByUsername(String username){
+        Optional<StudentEntity> optional = studentRepository.findByUsername(username);
+        if(optional.isPresent()){
+            return StudentDto.instance(optional.get());
+        }else{
+            return null;
+        }
+    }
 }

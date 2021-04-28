@@ -4,10 +4,9 @@ import az.charming.teachermanagement.controller.dto.request.StudentRequestDto;
 import az.charming.teachermanagement.controller.dto.response.StudentResponseDto;
 import az.charming.teachermanagement.dto.StudentDto;
 import az.charming.teachermanagement.service.functional.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -69,14 +68,32 @@ public class StudentEndpoint {
     }
 
     @PostMapping
-    public String add(@RequestBody StudentRequestDto studentRequestDto){
-        studentService.save(studentRequestDto.toStudentDto());
+    public String add(@RequestBody StudentRequestDto studentRequestDto) {
+        StudentDto studentDto =  studentRequestDto.toStudentDto();
+        studentDto.setUsername(studentRequestDto.getUsername());
+        studentDto.setPassword(bCrypt.encode(studentRequestDto.getPassword()));//$aksdjn@#a,sdsdkjn1
+        studentService.save(studentDto);
         return "success";
     }
 
     @PutMapping
     public String update(@RequestBody StudentRequestDto studentRequestDto){
-        studentService.save(studentRequestDto.toStudentDto());
+        StudentDto studentDto =  studentRequestDto.toStudentDto();
+        studentDto.setUsername(studentRequestDto.getUsername());
+        studentDto.setPassword(bCrypt.encode(studentRequestDto.getPassword()));
+        studentService.save(studentDto);
         return "success";
+    }
+
+    private final BCryptPasswordEncoder bCrypt = new BCryptPasswordEncoder();
+
+    @GetMapping(value = "/login")
+    public StudentResponseDto login(@RequestParam String username, @RequestParam String password) {
+        StudentDto foundStudent = studentService.findByUsername(username);
+        if(foundStudent==null)
+            throw new IllegalArgumentException("there is no such user");
+        if(!bCrypt.matches(password, foundStudent.getPassword()))//12345   --->  $aksdjn@#a,sdsdkjn1
+            throw new IllegalArgumentException("password is invalid");
+        return StudentResponseDto.instance(foundStudent);
     }
 }

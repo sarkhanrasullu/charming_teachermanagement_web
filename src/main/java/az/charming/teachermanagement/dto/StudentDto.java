@@ -3,7 +3,7 @@ package az.charming.teachermanagement.dto;
 import az.charming.teachermanagement.entity.SchoolEntity;
 import az.charming.teachermanagement.entity.StudentEntity;
 import az.charming.teachermanagement.entity.TeacherEntity;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,9 @@ import java.util.List;
 public class StudentDto {
 
     private Integer id;
+    private String username;
+    @JsonIgnore
+    private String password;
     private String name;
     private String surname;
     private Integer age;
@@ -46,6 +49,8 @@ public class StudentDto {
                 .setId(this.getId())
                 .setName(this.getName())
                 .setSurname(this.getSurname())
+                .setUsername(this.getUsername())
+                .setPassword(this.getPassword())
                 .setScholarship(this.getScholarship())
                 .setSchool(schoolEntity)
                 .setTeacherList(teachers)
@@ -59,7 +64,8 @@ public class StudentDto {
         studentDto.setName(st.getName());
         studentDto.setSurname(st.getSurname());
         studentDto.setScholarship(st.getScholarship());
-
+        studentDto.setUsername(st.getUsername());
+        studentDto.setPassword(st.getPassword());
         SchoolDto schoolDto = new SchoolDto();
         if(st.getSchool()!=null) {
             schoolDto.setId(st.getSchool().getId());
@@ -140,6 +146,24 @@ public class StudentDto {
 
     public StudentDto setTeacherList(List<TeacherDto> teacherList) {
         this.teacherList = teacherList;
+        return this;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public StudentDto setUsername(String username) {
+        this.username = username;
+        return this;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public StudentDto setPassword(String password) {
+        this.password = password;
         return this;
     }
 }
