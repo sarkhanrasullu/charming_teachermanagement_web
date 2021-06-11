@@ -1,0 +1,11 @@
+security.signing-key=MaYzkSjmkzPC57L
+security.encoding-strength=256
+
+spring:
+security:
+oauth2:
+client:
+registration:
+github:
+clientId: github-client-id
+clientSecret: github-client-secret
