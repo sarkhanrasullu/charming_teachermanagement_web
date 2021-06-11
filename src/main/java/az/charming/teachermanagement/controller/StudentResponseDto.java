@@ -1,4 +1,4 @@
-package az.charming.teachermanagement.controller.dto.response;
+package az.charming.teachermanagement.controller;
 
 import java.math.BigDecimal;
 

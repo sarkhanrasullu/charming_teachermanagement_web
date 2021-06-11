@@ -13,6 +13,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @Configuration
 @EnableAuthorizationServer
@@ -44,7 +45,7 @@ public class OAuth2AuthorizationServerConfig extends AuthorizationServerConfigur
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
-        enhancerChain.setTokenEnhancers(Arrays.asList(accessTokenConverter));
+        enhancerChain.setTokenEnhancers(Collections.singletonList(accessTokenConverter));
 
         endpoints
                 .tokenStore(tokenStore)

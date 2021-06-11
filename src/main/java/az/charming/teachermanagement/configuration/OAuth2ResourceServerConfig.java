@@ -28,10 +28,9 @@ public class OAuth2ResourceServerConfig extends ResourceServerConfigurerAdapter 
         http
                 .requestMatchers()
                 .and()
-
-                .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/rest/students").access("#oauth2.hasScope('read')")
-                .antMatchers(HttpMethod.POST,"/rest/students").access("#oauth2.hasScope('write')")
-                .anyRequest().authenticated();
+                .authorizeRequests().antMatchers("/rest/index1").hasAnyAuthority("ADMIN")
+                .and()
+                .authorizeRequests().antMatchers("/rest/index2").hasAnyAuthority("USER","ADMIN")
+                .antMatchers("/**" ).authenticated();
     }
 }
